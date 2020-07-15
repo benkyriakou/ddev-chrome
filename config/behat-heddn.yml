@@ -1,0 +1,34 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+  extensions:
+    Bex\Behat\ScreenshotExtension:
+      image_drivers:
+        local:
+          screenshot_directory: /var/www/html/screenshots
+          clear_screenshot_directory: true
+    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
+    Drupal\MinkExtension:
+      ajax_timeout: 30
+      base_url: https://heddn-project.ddev.site
+      browser_name: chrome
+      goutte: ~
+      default_session: command_line_browser
+      files_path: '/var/www/html/features/files'
+      javascript_session: js_enabled_browser
+      sessions:
+        command_line_browser:
+          goutte: ~
+        js_enabled_browser:
+          chrome:
+            api_url: http://chromedriver:9515
+            validate_certificate: false
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: 'drupal'
+      drupal:
+        drupal_root: '/var/www/html/web'

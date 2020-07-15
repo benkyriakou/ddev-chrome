@@ -1,0 +1,38 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MessageContext
+  extensions:
+    Bex\Behat\ScreenshotExtension:
+      image_drivers:
+        local:
+          screenshot_directory: /var/www/html/screenshots
+          clear_screenshot_directory: true
+    DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
+    Drupal\MinkExtension:
+      base_url: http://grid-project.ddev.site
+      ajax_timeout: 30
+      default_session: goutte
+      javascript_session: selenium2
+      files_path: '/var/www/html/features/files'
+      goutte:
+        guzzle_parameters:
+          ssl.certificate_authority: false
+      browser_name: chrome
+      selenium2:
+        wd_host: "http://chrome:4444/wd/hub"
+    Drupal\DrupalExtension:
+      drupal:
+        drupal_root: "web"
+      api_driver: 'drush'
+      drush:
+        root: /var/www/html/web
+      region_map:
+        header: "#header"
+        sidebar: "#sidebar-first"
+        content: "#content"
+        footer: ".site-footer"
