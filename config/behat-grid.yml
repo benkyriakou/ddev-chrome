@@ -14,7 +14,7 @@ default:
           clear_screenshot_directory: true
     DMore\ChromeExtension\Behat\ServiceContainer\ChromeExtension: ~
     Drupal\MinkExtension:
-      base_url: http://grid-project.ddev.site
+      base_url: http://web
       ajax_timeout: 30
       default_session: goutte
       javascript_session: selenium2
